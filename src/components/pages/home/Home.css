@@ -471,4 +471,245 @@
     transform: translateY(2px) translateX(2px);
 }
 
-/* Mobile rules removed - desktop layout only */
+/* Mobile / small-screen responsive rules */
+@media (max-width: 640px) {
+    .home-page {
+        height: auto;
+        align-items: flex-start;
+        padding: 20px 0 40px 0;
+        padding-left: 0;
+        padding-right: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* Disable desktop scaling on small screens (inline style may set transform) */
+    .home-container {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+        transform-origin: top left !important;
+        background-color: transparent;
+        position: relative;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Stack columns vertically */
+    .left-column {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        padding: 28px 20px;
+        background-color: #B7ABF3;
+        z-index: 20;
+    }
+
+    .header-left {
+        height: auto;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .hero-title {
+        width: 100%;
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -0.01em;
+        margin: 0 0 18px 0;
+    }
+
+    .description {
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 0 18px 0;
+    }
+
+    .volunteer-btn {
+        width: min(92%, 360px);
+        height: 56px;
+        margin-bottom: 18px;
+        pointer-events: auto;
+    }
+
+    .social-icons-container {
+        width: auto;
+        margin-bottom: 18px;
+        gap: 12px;
+        justify-content: flex-start;
+    }
+
+    .social-icon-link {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #ffffff;
+        box-shadow: 0 6px 14px rgba(85,30,8,0.06);
+        display: inline-block;
+        background-size: 172px 52px;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .quote-text {
+        max-width: 100%;
+        font-size: 13px;
+        margin: 0 0 18px 0;
+    }
+
+    .footer-left {
+        width: 100%;
+        margin-top: 10px;
+        padding-bottom: 8px;
+    }
+
+    /* Right column goes under the left column */
+    .right-column {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        height: auto;
+        pointer-events: auto;
+        z-index: 5;
+        margin-top: 8px;
+        padding: 0 16px 36px 16px;
+        display: block;
+        background-color: transparent;
+        overflow: visible;
+    }
+
+    /* Make the sky section a smaller, mobile-friendly panel that still animates */
+    /* Compact sky panel: full-bleed background, sits above illustrations */
+    .sky-bg-container,
+    .clouds-loop {
+        position: relative;
+        /* make the sky span the full viewport width (full-bleed) */
+        width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 220px;
+        overflow: hidden;
+        animation: clouds-move 40s linear infinite;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .clouds-loop .cloud {
+        flex: 0 0 100%;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .donate-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 12px 0;
+        pointer-events: auto;
+    }
+
+    .donate-badge {
+        width: min(320px, 90%);
+        height: auto;
+        object-fit: contain;
+        pointer-events: none;
+    }
+
+    .donate-link {
+        position: relative;
+        right: auto;
+        top: auto;
+        color: #551E08;
+        pointer-events: auto;
+        text-decoration: underline;
+    }
+
+    /* Overlapping composition like desktop but scaled down */
+    /* larger overlapping composition placed immediately under the sky */
+    .boys-illustrations {
+        position: relative;
+        width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 360px;
+        margin-top: 0;
+        padding: 0;
+        overflow: visible;
+        pointer-events: none;
+        background: transparent;
+    }
+
+    .boy-img {
+        position: absolute;
+        bottom: 0;
+        object-fit: cover;
+        height: auto;
+        transform: none !important;
+        mix-blend-mode: multiply;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* Layer and size adjustments for mobile composition */
+    .boy3 {
+        left: 4%;
+        bottom: 12px;
+        width: 24%;
+        z-index: 2;
+        object-position: 50% 60%;
+    }
+
+    .boy2 {
+        left: 28%;
+        bottom: 6px;
+        width: 40%;
+        z-index: 3;
+        object-position: 50% 45%;
+    }
+
+    .boy1 {
+        right: -6%;
+        bottom: -8px;
+        width: 64%;
+        z-index: 4;
+        object-position: 55% 18%;
+    }
+
+    /* ensure images don't show any white background */
+    .boy-img {
+        background: transparent;
+        display: block;
+    }
+
+    .sad-text-badge-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+    }
+
+    .sad-badge-bg,
+    .sad-badge-fg {
+        position: relative;
+        width: min(220px, 80%);
+        height: auto;
+        top: 0;
+        left: 0;
+        transform: none !important;
+    }
+
+}
