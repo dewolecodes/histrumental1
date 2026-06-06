@@ -1,0 +1,19 @@
+/* fonts.css - loaded from public so webpack won't resolve these URLs
+   Place licensed font files in /public/fonts/ with the filenames below.
+*/
+
+@font-face {
+    font-family: 'GT Zirkon';
+    src: local('GT Zirkon'), url('/fonts/GT-Zirkon.woff2') format('woff2');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: local('GT Walsheim Pro'), url('/fonts/GT-WalsheimPro.woff2') format('woff2');
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}

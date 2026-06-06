@@ -1,0 +1,474 @@
+/* Home.css */
+
+/*
+    Local font placeholders moved to public/fonts/fonts.css
+    Place licensed font files in `public/fonts/` (recommended: .woff2).
+*/
+
+.home-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #B7ABF3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Home Container */
+.home-container {
+    width: 1440px;
+    height: 832px;
+    background-color: #B7ABF3;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+}
+
+/* Left Column */
+.left-column {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 560px;
+    height: 832px;
+    background-color: #B7ABF3;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    padding: 32px 36px 40px 64px;
+}
+
+/* Header Left */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 50px;
+    margin-bottom: 24px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-img:hover {
+    transform: scale(1.06);
+}
+
+.wip-tag {
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    white-space: nowrap;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero Title */
+.hero-title {
+    width: 420px;
+    /* widen title so it fills more vertical space like the design */
+    height: auto;
+    font-family: 'Outfit', 'DM Sans', -apple-system, sans-serif;
+    font-weight: 800;
+    font-size: 64px;
+    line-height: 64px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #551E08;
+    margin: 0 0 24px 0;
+    transition: text-decoration 0.2s ease;
+}
+
+.hero-title:hover {
+    text-decoration: none;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/* Description */
+.description {
+    max-width: 420px;
+    height: auto;
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    margin: 0 0 24px 0;
+    transition: text-decoration 0.2s ease;
+}
+
+.description:hover {
+    text-decoration: none;
+}
+
+/* Volunteer CTA button */
+.volunteer-btn {
+    width: 256px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 14px 20px;
+    gap: 12px;
+    border-radius: 1000px;
+    background: linear-gradient(244.58deg, #F1711C 16.11%, #FDB633 52.41%, #FACE9F 83.89%);
+    color: #551E08;
+    font-family: 'Outfit', 'DM Sans', -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(241, 113, 28, 0.2);
+    border: none;
+    outline: none;
+    margin-bottom: 24px;
+}
+
+.volunteer-btn:hover {
+    box-shadow: 0 8px 25px rgba(241, 113, 28, 0.4);
+}
+
+.volunteer-btn:active {
+}
+
+.volunteer-btn span {
+    white-space: nowrap;
+}
+
+.volunteer-btn .arrow-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.volunteer-btn:hover .arrow-circle {
+    transform: translateX(4px);
+    background-color: #fcfcfc;
+}
+
+/* Social icons wrapper */
+.social-icons-container {
+    width: 172px;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.social-icon-link {
+    display: block;
+    width: 52px;
+    height: 52px;
+    background-image: var(--social-icons-url);
+    background-size: 172px 52px;
+    background-repeat: no-repeat;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icon-link:hover {
+    transform: scale(1.08);
+    z-index: 10;
+}
+
+.social-icon-link.instagram {
+    background-position: 0px 0px;
+}
+
+.social-icon-link.twitter {
+    background-position: -60px 0px;
+}
+
+.social-icon-link.facebook {
+    background-position: -120px 0px;
+}
+
+/* Hover underline for several left-column texts (tiny underline) */
+.wip-tag:hover,
+.quote-text:hover,
+.copyright:hover {
+    text-decoration: none;
+}
+
+/* Quote Text */
+.quote-text {
+    max-width: 364px;
+    height: auto;
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    margin: 0 0 24px 0;
+}
+
+/* Footer Left */
+.footer-left {
+    width: 320px;
+    height: auto;
+    margin-top: auto;
+    /* push copyright to the bottom */
+}
+
+.copyright {
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    opacity: 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    filter: none;
+}
+
+/* Right Column */
+.right-column {
+    position: absolute;
+    top: 0;
+    left: 560px;
+    right: 0;
+    height: 832px;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Sky Background */
+.sky-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sky-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Clouds loop animation: two side-by-side panels that translate left infinitely */
+.clouds-loop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* two panels side-by-side */
+    height: 100%;
+    display: flex;
+    pointer-events: none;
+    will-change: transform;
+    animation: clouds-move 60s linear infinite;
+}
+
+.clouds-loop .cloud {
+    flex: 0 0 50%;
+    height: 100%;
+    background-image: var(--sky-url);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+@keyframes clouds-move {
+    from { transform: translateX(0%); }
+    to   { transform: translateX(-50%); }
+}
+
+/* Reduce motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .clouds-loop {
+        animation: none;
+    }
+}
+
+/* On small screens slow down the movement and ensure full-bleed behavior */
+/* Small-screen rules removed: desktop-only styles retained */
+
+/* Donate badge */
+.donate-container {
+    position: absolute;
+    top: 29px;
+    right: 24px;
+    width: 495px;
+    height: 40px;
+    z-index: 20;
+    pointer-events: none; /* make image itself non-interactive */
+}
+
+.donate-badge {
+    width: 495px;
+    height: 40px;
+    object-fit: contain;
+    cursor: default;
+    pointer-events: none; /* image should not capture hover/click */
+}
+
+/* small overlay link positioned over the email text on the badge
+   only this area will respond to hover/click */
+.donate-link {
+    position: absolute;
+    top: 0;
+    right: 18px; /* adjust so it sits over the email text in the badge */
+    height: 40px;
+    line-height: 40px;
+    padding: 0 12px;
+    display: inline-block;
+    border-radius: 999px;
+    text-decoration: none;
+    color: transparent; /* keep visually transparent so badge image shows through */
+    pointer-events: auto;
+}
+
+.donate-link:focus {
+    outline: 2px solid rgba(85,30,8,0.15);
+    color: #551E08; /* visible when focused for accessibility */
+}
+
+/* Boys illustrations */
+.boys-illustrations {
+    /* match the right-column area so child coords are local to the right column */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 880px; /* right-column spans from 560px -> 1440px (880px) */
+    height: 832px;
+}
+
+.boy-img {
+    position: absolute;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    /* Blends white JPEG background transparently with the sky background */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    /* allow focal adjustments inside the cropped widths/heights */
+    object-position: 50% 50%;
+}
+
+/* boy3 (Left, smallest, back) */
+.boy3 {
+    /* exact position/size from design */
+    position: absolute;
+     top: 452px;
+     /* moved right to match Figma */
+     left: 102px;
+    width: 274px;
+    height: 380px;
+    z-index: 2;
+    transform: rotate(0deg);
+    opacity: 1;
+    object-position: 50% 70%; /* shift focal point so face aligns lower-left */
+}
+
+/* boy2 (Middle) */
+.boy2 {
+    /* exact position/size from design */
+    position: absolute;
+    top: 239px;
+    left: 270px;
+    width: 428px;
+    height: 593px;
+    z-index: 3;
+    transform: rotate(0deg);
+    opacity: 1;
+    object-position: 50% 45%; /* make middle face sit a bit higher */
+}
+
+/* boy1 (Right, largest, front) */
+.boy1 {
+    /* exact position/size from design */
+    position: absolute;
+    top: -60px;
+    left: 505px;
+    width: 644px;
+    height: 892px;
+    z-index: 4;
+    transform: rotate(0deg);
+    opacity: 1;
+    object-position: 55% 18%; /* shift focal point up/right for large image */
+}
+
+/* Interactive illustration effect */
+.boys-illustrations:hover .boy1 {
+    transform: scale(1.02) translate(5px, -5px);
+}
+
+.boys-illustrations:hover .boy2 {
+    transform: scale(1.01) translate(2px, -2px);
+}
+
+.boys-illustrations:hover .boy3 {
+    transform: scale(1.01) translate(-2px, -2px);
+}
+
+/* Sad text badges stacked */
+.sad-text-badge-container {
+    position: absolute;
+    top: 768px;
+    right: 24px;
+    width: 180px;
+    height: 40px;
+    z-index: 15;
+}
+
+.sad-badge-bg {
+    position: absolute;
+    top: 8px;
+    /* offset: 776px - 768px */
+    left: 0;
+    width: 180px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.sad-badge-fg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.sad-text-badge-container:hover .sad-badge-fg {
+    transform: translateY(-2px) translateX(-2px);
+}
+
+.sad-text-badge-container:hover .sad-badge-bg {
+    transform: translateY(2px) translateX(2px);
+}
+
+/* Mobile rules removed - desktop layout only */
