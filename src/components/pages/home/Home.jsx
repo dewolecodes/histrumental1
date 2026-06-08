@@ -105,23 +105,25 @@ export default function Home() {
                             <div className="cloud"></div>
                             <div className="cloud"></div>
                         </div>
+
+                        {/* Place illustrations and badge inside the sky container so they
+                           are positioned relative to the sky's bottom on mobile */}
+                        <div className="boys-illustrations">
+                            {/* boy3 is in the back, boy1 is in the front */}
+                            <img src="/images/boy3.jpg" className="boy-img boy3" alt="Young boy illustration" />
+                            <img src="/images/boy2.jpg" className="boy-img boy2" alt="Boy illustration" />
+                            <img src="/images/boy1.jpg" className="boy-img boy1" alt="Older boy illustration" />
+                        </div>
+
+                        <div className="sad-text-badge-container">
+                            <img src="/icons/boysgetsadtoo2.png" className="sad-badge-bg" alt="Boys Get Sad Too outline shadow" />
+                            <img src="/icons/boysgetsadtoo.png" className="sad-badge-fg" alt="Boys Get Sad Too text" />
+                        </div>
                     </div>
 
                     <div className="donate-container">
                         <img src="/icons/todonate.png" className="donate-badge" alt="To donate today, send us a message" />
                         <a href="mailto:support@histrumental.org" className="donate-link" aria-label="Email support">support@histrumental.org</a>
-                    </div>
-
-                    <div className="boys-illustrations">
-                        {/* boy3 is in the back, boy1 is in the front */}
-                        <img src="/images/boy3.jpg" className="boy-img boy3" alt="Young boy illustration" />
-                        <img src="/images/boy2.jpg" className="boy-img boy2" alt="Boy illustration" />
-                        <img src="/images/boy1.jpg" className="boy-img boy1" alt="Older boy illustration" />
-                    </div>
-
-                    <div className="sad-text-badge-container">
-                        <img src="/icons/boysgetsadtoo2.png" className="sad-badge-bg" alt="Boys Get Sad Too outline shadow" />
-                        <img src="/icons/boysgetsadtoo.png" className="sad-badge-fg" alt="Boys Get Sad Too text" />
                     </div>
                 </div>
             </div>
