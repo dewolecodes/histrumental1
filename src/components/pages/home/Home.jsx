@@ -113,15 +113,20 @@ export default function Home() {
                             <img src="/images/boy3.jpg" className="boy-img boy3" alt="Young boy illustration" />
                             <img src="/images/boy2.jpg" className="boy-img boy2" alt="Boy illustration" />
                             <img src="/images/boy1.jpg" className="boy-img boy1" alt="Older boy illustration" />
-                            {/* mobile-only centered text/logo that should sit where the three boys are */}
-                            <img src="/icons/boysgetsadtoo.png" className="boysgetsadtoo" alt="Boys Get Sad Too" aria-hidden="true" />
                         </div>
 
                         <div className="sad-text-badge-container">
                             <img src="/icons/boysgetsadtoo2.png" className="sad-badge-bg" alt="Boys Get Sad Too outline shadow" />
                             <img src="/icons/boysgetsadtoo.png" className="sad-badge-fg" alt="Boys Get Sad Too text" />
                         </div>
+                        {/* desktop badge above; also include two dedicated mobile images that will
+                            be positioned by CSS so they reliably appear on small screens side-by-side */}
+                        <img src="/icons/boysgetsadtoo2.png" className="boysgetsadtoo boysgetsadtoo-left" alt="Boys Get Sad Too mobile bg" />
+                        <img src="/icons/boysgetsadtoo.png" className="boysgetsadtoo boysgetsadtoo-right" alt="Boys Get Sad Too mobile fg" />
                     </div>
+
+                    {/* mobile-only copyright placed after the sky so it always appears below the image */}
+                    <div className="mobile-copyright">©2026 Histrumental.org. All Rights Reserved</div>
 
                     <div className="donate-container">
                         <img src="/icons/todonate.png" className="donate-badge" alt="To donate today, send us a message" />
