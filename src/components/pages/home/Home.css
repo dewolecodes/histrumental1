@@ -366,6 +366,9 @@
     height: 832px;
 }
 
+/* hide mobile-only overlay by default; mobile media query will show it */
+.boysgetsadtoo { display: none; }
+
 /* Expose editable CSS variables so positions/sizes can be tweaked easily
    You can override these on the `.boys-illustrations` element (inline style)
    or via a parent to change the images' `top/left/width/height` values. */
@@ -824,6 +827,28 @@
         height: auto;
         display: block;
     }
+
+    /* Position the boysgetsadtoo image where the three boys sit (mobile-only).
+       Defaults center the image at the bottom of the sky; tweak CSS variables
+       to fine-tune placement per device. */
+    .boysgetsadtoo,
+    img.boysgetsadtoo {
+        position: absolute;
+        bottom: var(--boysgetsadtoo-bottom-mobile, 0);
+        left: var(--boysgetsadtoo-left-mobile, 50%);
+        transform: translateX(-50%);
+        width: var(--boysgetsadtoo-width-mobile, 48%);
+        max-width: var(--boysgetsadtoo-max-width-mobile, 320px);
+        height: auto;
+        object-fit: contain;
+        object-position: 50% 100%;
+        z-index: 999; /* ensure it's above other visuals */
+        pointer-events: none;
+        display: block !important; /* override any earlier hide */
+        mix-blend-mode: normal !important; /* keep logo/text fully visible */
+        background: transparent !important;
+        filter: none !important;
+    }
 }
 
 /* Also apply similar anchoring for slightly larger mobile/tablet viewports
@@ -865,6 +890,25 @@
     .boy3 { bottom: 0; left: 6%; width: 22%; max-height: 75%; object-position: 50% 100%; }
     .boy2 { top: auto; bottom: var(--boy2-bottom-mobile, 0); left: var(--boy2-left-mobile, 30%); width: var(--boy2-width-mobile, 30%); max-height: var(--boy2-max-height-mobile, 82%); object-position: var(--boy2-object-position-mobile, 50% 100%); }
     .boy1 { top: auto; bottom: var(--boy1-bottom-mobile, 0); left: var(--boy1-left-mobile, 52%); width: var(--boy1-width-mobile, 44%); max-height: var(--boy1-max-height-mobile, 96%); object-position: var(--boy1-object-position-mobile, 55% 100%); }
+
+    /* Ensure the boysgetsadtoo overlay shows on larger mobile/tablet breakpoints too */
+    .boysgetsadtoo,
+    img.boysgetsadtoo {
+        position: absolute;
+        bottom: var(--boysgetsadtoo-bottom-mobile, 0);
+        left: var(--boysgetsadtoo-left-mobile, 50%);
+        transform: translateX(-50%);
+        width: var(--boysgetsadtoo-width-mobile, 40%);
+        max-width: var(--boysgetsadtoo-max-width-mobile, 420px);
+        height: auto;
+        object-fit: contain;
+        object-position: 50% 100%;
+        z-index: 999;
+        display: block !important;
+        mix-blend-mode: normal !important;
+        background: transparent !important;
+        filter: none !important;
+    }
 
     .sad-text-badge-container { bottom: var(--sad-badge-bottom-mobile, 6%); right: var(--sad-badge-right-mobile, 4%); z-index: 30; }
     .sad-text-badge-container, .sad-text-badge-container img { mix-blend-mode: normal !important; }

@@ -113,6 +113,8 @@ export default function Home() {
                             <img src="/images/boy3.jpg" className="boy-img boy3" alt="Young boy illustration" />
                             <img src="/images/boy2.jpg" className="boy-img boy2" alt="Boy illustration" />
                             <img src="/images/boy1.jpg" className="boy-img boy1" alt="Older boy illustration" />
+                            {/* mobile-only centered text/logo that should sit where the three boys are */}
+                            <img src="/icons/boysgetsadtoo.png" className="boysgetsadtoo" alt="Boys Get Sad Too" aria-hidden="true" />
                         </div>
 
                         <div className="sad-text-badge-container">
