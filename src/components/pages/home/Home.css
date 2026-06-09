@@ -927,10 +927,12 @@
 }
 
 /* Also apply similar anchoring for slightly larger mobile/tablet viewports
-   in case the browser/device width is above 640px but still intended
-   to show the stacked mobile layout. This helps if the device toolbar
-   or emulator uses a wider viewport. */
-@media (max-width: 900px) {
+    in case the browser/device width is above 640px but still intended
+    to show the stacked mobile layout. This helps if the device toolbar
+    or emulator uses a wider viewport. */
+/* NOTE: breakpoint increased from 900px -> 1200px so tablet layout
+    (the 'second' screen seen in the screenshots) starts earlier. */
+@media (max-width: 1200px) {
     .sky-bg-container {
         overflow: hidden;
     }
@@ -1898,7 +1900,7 @@
    in case the browser/device width is above 640px but still intended
    to show the stacked mobile layout. This helps if the device toolbar
    or emulator uses a wider viewport. */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
     .sky-bg-container {
         overflow: hidden;
     }
