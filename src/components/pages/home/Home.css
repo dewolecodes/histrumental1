@@ -499,7 +499,7 @@
     .home-page {
         height: auto;
         align-items: flex-start;
-        padding: 20px 0 40px 0;
+        padding: 20px 0 12px 0;
         padding-left: 0;
         padding-right: 0;
         overflow-y: auto;
@@ -619,11 +619,11 @@
         top: 0;
         left: 0;
         width: 100%;
-        /* Reduce the visible sky on mobile so it doesn't create large empty
-           space below the illustrations. The clamp keeps it flexible but
-           much smaller than desktop defaults. */
-        height: clamp(220px, 42vh, 420px);
-        min-height: 200px;
+          /* Reduce the visible sky on mobile so it doesn't create large empty
+              space below the illustrations. Use a tighter clamp to lower the
+              sky height and reduce purple area under the footer. */
+          height: clamp(160px, 36vh, 340px);
+          min-height: 160px;
         max-width: none;
         border-radius: 0;
         margin: 0;
@@ -776,6 +776,48 @@
         isolation: isolate;
     }
 
+    /* On mobile we hide the desktop stacked container and show the
+       dedicated mobile images so we can precisely control stacking */
+    .sad-text-badge-container { display: none; }
+
+    /* Mobile-specific two-image badge: stack them with a small horizontal
+       offset so they appear placed on top of each other as in the design */
+    .boysgetsadtoo {
+        display: block;
+        position: absolute;
+        bottom: 20px;
+        right: 16px;
+        width: 140px;
+        height: auto;
+        z-index: 85;
+        pointer-events: none;
+        object-fit: contain;
+        mix-blend-mode: normal;
+    }
+
+    .boysgetsadtoo-left {
+        /* the background / offset image sits slightly left */
+        right: 80px;
+        opacity: 1;
+    }
+
+    .boysgetsadtoo-right {
+        /* the foreground text image sits on top, a bit to the right */
+        right: 16px;
+        opacity: 1;
+    }
+
+    /* Mobile copyright: keep it tight under the sky */
+    .mobile-copyright {
+        font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: #551E08;
+        margin: 8px 20px 12px 20px;
+        padding: 0;
+    }
+
     /* DEBUG: make the badge clearly visible on mobile while testing */
     .sad-text-badge-container.debug-visible {
         outline: 3px dashed rgba(255,0,0,0.9);
@@ -787,7 +829,7 @@
     .sad-badge-bg {
         position: absolute;
         top: 0;
-        left: 0;
+        left: -20;
         width: 100%;
         height: 100%;
         object-fit: contain;
@@ -831,16 +873,16 @@
        to fine-tune placement per device. */
     .boysgetsadtoo,
     img.boysgetsadtoo {
-        /* bottom-right of the sky, raised slightly above the boys */
+        /* bottom-right of the sky, two images sit side-by-side */
         position: absolute;
-        bottom: 22px; /* lift above boys */
+        bottom: 8px; /* sit close to the bottom edge of the sky */
         left: auto;
         transform: none;
         width: 140px;
         height: auto;
         object-fit: contain;
         object-position: 100% 100%;
-        z-index: 80; /* above boys, below donate */
+        z-index: 90; /* above boys, below donate */
         pointer-events: none;
         display: block !important;
         mix-blend-mode: normal !important;
@@ -848,13 +890,995 @@
         filter: none !important;
     }
 
-    .boysgetsadtoo-left { right: 190px; /* left image sits to the left of the fg */ }
-    .boysgetsadtoo-right { right: 18px; }
+    /* stack the two mobile badge images so the left image overlaps the right
+       and sits slightly higher to reveal the underlying design */
+    .boysgetsadtoo-left {
+        /* align horizontally with the right image and raise it a bit */
+       right: 12px;
+        bottom: 8px;
+        z-index: 90;
+    }
+
+    
+    .boysgetsadtoo-right {
+        /* keep the right image slightly lower so it sits underneath */
+        right: 12px;
+        bottom: 8px;
+        z-index: 90;
+    }
 
     /* Mobile copyright placed in DOM so it is easier to find and style */
     .mobile-copyright {
         display: block;
-        margin: 22px 20px 44px 20px; /* more space below the sky */
+        margin: 12px 20px 12px 20px; /* reduce extra blank space below copyright */
+        color: #551E08;
+        font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+        font-weight: 500;
+        font-size: 13px; /* match mobile body text */
+        line-height: 16px;
+        letter-spacing: -0.01em;
+        z-index: 6;
+    }
+
+    /* move copyright below the sky on mobile */
+    .left-column .copyright { display: none; }
+
+    /* removed pseudo copyright: using real DOM element `.mobile-copyright` */
+}
+
+/* Also apply similar anchoring for slightly larger mobile/tablet viewports
+   in case the browser/device width is above 640px but still intended
+   to show the stacked mobile layout. This helps if the device toolbar
+   or emulator uses a wider viewport. */
+@media (max-width: 900px) {
+    .sky-bg-container {
+        overflow: hidden;
+    }
+
+    .boys-illustrations {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: none !important;
+        margin: 0;
+        z-index: 3;
+        overflow: visible;
+        pointer-events: none;
+        background: transparent;
+        display: block;
+        isolation: auto;
+        mix-blend-mode: multiply;
+    }
+
+    .boy-img {
+        position: absolute;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+        background: transparent;
+        display: block;
+        transform: none !important;
+        background-color: transparent !important;
+    }
+
+    .boy3 { bottom: 0; left: 6%; width: 22%; max-height: 75%; object-position: 50% 100%; }
+    .boy2 { top: auto; bottom: var(--boy2-bottom-mobile, 0); left: var(--boy2-left-mobile, 30%); width: var(--boy2-width-mobile, 30%); max-height: var(--boy2-max-height-mobile, 82%); object-position: var(--boy2-object-position-mobile, 50% 100%); }
+    .boy1 { top: auto; bottom: var(--boy1-bottom-mobile, 0); left: var(--boy1-left-mobile, 52%); width: var(--boy1-width-mobile, 44%); max-height: var(--boy1-max-height-mobile, 96%); object-position: var(--boy1-object-position-mobile, 55% 100%); }
+
+}/* Home.css */
+
+/*
+    Local font placeholders moved to public/fonts/fonts.css
+    Place licensed font files in `public/fonts/` (recommended: .woff2).
+*/
+
+.home-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #B7ABF3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Home Container */
+.home-container {
+    width: 1440px;
+    height: 832px;
+    background-color: #B7ABF3;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+}
+
+/* Left Column */
+.left-column {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 560px;
+    height: 832px;
+    background-color: #B7ABF3;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    padding: 32px 36px 40px 64px;
+}
+
+/* Header Left */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 50px;
+    margin-bottom: 24px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-img:hover {
+    transform: scale(1.06);
+}
+
+.wip-tag {
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    white-space: nowrap;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero Title */
+.hero-title {
+    width: 420px;
+    /* widen title so it fills more vertical space like the design */
+    height: auto;
+    font-family: 'Outfit', 'DM Sans', -apple-system, sans-serif;
+    font-weight: 800;
+    font-size: 64px;
+    line-height: 64px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #551E08;
+    margin: 0 0 24px 0;
+    transition: text-decoration 0.2s ease;
+}
+
+.hero-title:hover {
+    text-decoration: none;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/* Description */
+.description {
+    max-width: 420px;
+    height: auto;
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    margin: 0 0 24px 0;
+    transition: text-decoration 0.2s ease;
+}
+
+.description:hover {
+    text-decoration: none;
+}
+
+/* Volunteer CTA button */
+.volunteer-btn {
+    width: 256px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 14px 20px;
+    gap: 12px;
+    border-radius: 1000px;
+    background: linear-gradient(244.58deg, #F1711C 16.11%, #FDB633 52.41%, #FACE9F 83.89%);
+    color: #551E08;
+    font-family: 'Outfit', 'DM Sans', -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(241, 113, 28, 0.2);
+    border: none;
+    outline: none;
+    margin-bottom: 24px;
+}
+
+.volunteer-btn:hover {
+    box-shadow: 0 8px 25px rgba(241, 113, 28, 0.4);
+}
+
+.volunteer-btn:active {
+    transform: none;
+}
+.volunteer-btn span {
+    white-space: nowrap;
+}
+
+.volunteer-btn .arrow-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.volunteer-btn:hover .arrow-circle {
+    transform: translateX(4px);
+    background-color: #fcfcfc;
+}
+
+/* Social icons wrapper */
+.social-icons-container {
+    width: 172px;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.social-icon-link {
+    display: block;
+    width: 52px;
+    height: 52px;
+    background-image: var(--social-icons-url);
+    background-size: 172px 52px;
+    background-repeat: no-repeat;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icon-link:hover {
+    transform: scale(1.08);
+    z-index: 10;
+}
+
+.social-icon-link.instagram {
+    background-position: 0px 0px;
+}
+
+.social-icon-link.twitter {
+    background-position: -60px 0px;
+}
+
+.social-icon-link.facebook {
+    background-position: -120px 0px;
+}
+
+/* Hover underline for several left-column texts (tiny underline) */
+.wip-tag:hover,
+.quote-text:hover,
+.copyright:hover {
+    text-decoration: none;
+}
+
+/* Quote Text */
+.quote-text {
+    max-width: 364px;
+    height: auto;
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    margin: 0 0 24px 0;
+}
+
+/* Footer Left */
+.footer-left {
+    width: 320px;
+    height: auto;
+    margin-top: auto;
+    /* push copyright to the bottom */
+}
+
+.copyright {
+    font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.01em;
+    color: #551E08;
+    opacity: 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    filter: none;
+}
+
+/* Right Column */
+.right-column {
+    position: absolute;
+    top: 0;
+    left: 560px;
+    right: 0;
+    height: 832px;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Sky Background */
+.sky-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sky-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Clouds loop animation: two side-by-side panels that translate left infinitely */
+.clouds-loop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* two panels side-by-side */
+    height: 100%;
+    display: flex;
+    pointer-events: none;
+    will-change: transform;
+    animation: clouds-move 60s linear infinite;
+}
+
+.clouds-loop .cloud {
+    flex: 0 0 50%;
+    height: 100%;
+    background-image: var(--sky-url);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+@keyframes clouds-move {
+    from { transform: translateX(0%); }
+    to   { transform: translateX(-50%); }
+}
+
+/* Reduce motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .clouds-loop {
+        animation: none;
+    }
+}
+
+/* On small screens slow down the movement and ensure full-bleed behavior */
+/* Small-screen rules removed: desktop-only styles retained */
+
+/* Donate badge */
+.donate-container {
+    position: absolute;
+    top: 29px;
+    right: 24px;
+    width: 495px;
+    height: 40px;
+    z-index: 20;
+    pointer-events: none; /* make image itself non-interactive */
+}
+
+.donate-badge {
+    width: 495px;
+    height: 40px;
+    object-fit: contain;
+    cursor: default;
+    pointer-events: none; /* image should not capture hover/click */
+}
+
+/* small overlay link positioned over the email text on the badge
+   only this area will respond to hover/click */
+.donate-link {
+    position: absolute;
+    top: 0;
+    right: 18px; /* adjust so it sits over the email text in the badge */
+    height: 40px;
+    line-height: 40px;
+    padding: 0 12px;
+    display: inline-block;
+    border-radius: 999px;
+    text-decoration: none;
+    color: transparent; /* keep visually transparent so badge image shows through */
+    pointer-events: auto;
+}
+
+.donate-link:focus {
+    outline: 2px solid rgba(85,30,8,0.15);
+    color: #551E08; /* visible when focused for accessibility */
+}
+
+/* Boys illustrations */
+.boys-illustrations {
+    /* match the right-column area so child coords are local to the right column */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 880px; /* right-column spans from 560px -> 1440px (880px) */
+    height: 832px;
+}
+
+/* hide mobile-only overlay by default; mobile media query will show it */
+.boysgetsadtoo { display: none; }
+
+/* Expose editable CSS variables so positions/sizes can be tweaked easily
+   You can override these on the `.boys-illustrations` element (inline style)
+   or via a parent to change the images' `top/left/width/height` values. */
+.boys-illustrations {
+    --boy1-top: -60px;
+    --boy1-left: 505px;
+    --boy1-width: 644px;
+    --boy1-height: 892px;
+
+    --boy2-top: 239px;
+    --boy2-left: 270px;
+    --boy2-width: 428px;
+    --boy2-height: 593px;
+
+    --boy3-top: 452px;
+    --boy3-left: 102px;
+    --boy3-width: 274px;
+    --boy3-height: 380px;
+}
+
+.boy-img {
+    position: absolute;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    /* Blends white JPEG background transparently with the sky background */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    /* allow focal adjustments inside the cropped widths/heights */
+    object-position: 50% 50%;
+}
+
+/* boy3 (Left, smallest, back) */
+.boy3 {
+    /* exact position/size from design */
+    position: absolute;
+    top: var(--boy3-top, 452px);
+    /* moved right to match Figma */
+    left: var(--boy3-left, 102px);
+    width: var(--boy3-width, 274px);
+    height: var(--boy3-height, 380px);
+    z-index: 2;
+    transform: rotate(0deg);
+    opacity: 1;
+    object-position: 50% 70%; /* shift focal point so face aligns lower-left */
+}
+
+/* boy2 (Middle) */
+.boy2 {
+    /* exact position/size from design */
+    position: absolute;
+    top: var(--boy2-top, 239px);
+    left: var(--boy2-left, 270px);
+    width: var(--boy2-width, 428px);
+    height: var(--boy2-height, 593px);
+    z-index: 3;
+    transform: rotate(0deg);
+    opacity: 1;
+    object-position: 50% 45%; /* make middle face sit a bit higher */
+}
+
+/* boy1 (Right, largest, front) */
+.boy1 {
+    /* exact position/size from design */
+    position: absolute;
+    top: var(--boy1-top, -60px);
+    left: var(--boy1-left, 505px);
+    width: var(--boy1-width, 644px);
+    height: var(--boy1-height, 892px);
+    z-index: 4;
+    transform: rotate(0deg);
+    opacity: 1;
+    object-position: 55% 18%; /* shift focal point up/right for large image */
+}
+
+/* Interactive illustration effect */
+.boys-illustrations:hover .boy1 {
+    transform: scale(1.02) translate(5px, -5px);
+}
+
+.boys-illustrations:hover .boy2 {
+    transform: scale(1.01) translate(2px, -2px);
+}
+
+.boys-illustrations:hover .boy3 {
+    transform: scale(1.01) translate(-2px, -2px);
+}
+
+/* Sad text badges stacked */
+.sad-text-badge-container {
+    position: absolute;
+    top: 768px;
+    right: 24px;
+    width: 180px;
+    height: 40px;
+    z-index: 15;
+}
+
+.sad-badge-bg {
+    position: absolute;
+    top: 8px;
+    /* offset: 776px - 768px */
+    left: 0;
+    width: 180px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.sad-badge-fg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.sad-text-badge-container:hover .sad-badge-fg {
+    transform: translateY(-2px) translateX(-2px);
+}
+
+.sad-text-badge-container:hover .sad-badge-bg {
+    transform: translateY(2px) translateX(2px);
+}
+
+/* Mobile / small-screen responsive rules */
+@media (max-width: 640px) {
+    .home-page {
+        height: auto;
+        align-items: flex-start;
+        padding: 20px 0 12px 0;
+        padding-left: 0;
+        padding-right: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: transparent;
+    }
+
+    /* Disable desktop scaling on small screens (inline style may set transform) */
+    .home-container {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+        transform-origin: top left !important;
+        background-color: transparent;
+        position: relative;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Stack columns vertically */
+    .left-column {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        padding: 28px 20px;
+        background-color: #B7ABF3;
+        z-index: 20;
+    }
+
+    .header-left {
+        height: auto;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .hero-title {
+        width: 100%;
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -0.01em;
+        margin: 0 0 18px 0;
+    }
+
+    .description {
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 0 18px 0;
+    }
+
+    .volunteer-btn {
+        width: min(92%, 360px);
+        height: 56px;
+        margin-bottom: 18px;
+        pointer-events: auto;
+    }
+
+    .social-icons-container {
+        width: auto;
+        margin-bottom: 18px;
+        gap: 12px;
+        justify-content: flex-start;
+    }
+
+    .social-icon-link {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #ffffff;
+        box-shadow: 0 6px 14px rgba(85,30,8,0.06);
+        display: inline-block;
+        background-size: 172px 52px;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .quote-text {
+        max-width: 100%;
+        font-size: 13px;
+        margin: 0 0 18px 0;
+    }
+
+    .footer-left {
+        width: 100%;
+        margin-top: 10px;
+        padding-bottom: 8px;
+    }
+
+    /* Right column goes under the left column */
+    .right-column {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        /* let the right column size to its content on mobile to avoid
+           large empty purple area below the sky */
+        height: auto;
+        max-height: none;
+          /* allow overflow visible so mobile copyright injected below the sky
+              is not clipped */
+          overflow: visible;
+        z-index: 5;
+        margin-top: 0px; /* tighten gap between text and sky on mobile */
+        padding: 0;
+        display: block;
+        background-color: transparent;
+        box-sizing: border-box;
+        pointer-events: auto;
+    }
+
+    .sky-bg-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+          /* Reduce the visible sky on mobile so it doesn't create large empty
+              space below the illustrations. Use a tighter clamp to lower the
+              sky height and reduce purple area under the footer. */
+          height: clamp(160px, 36vh, 340px);
+          min-height: 160px;
+        max-width: none;
+        border-radius: 0;
+        margin: 0;
+        z-index: 1;
+        /* clip illustrations so any white canvas outside the sky doesn't show */
+        overflow: hidden;
+    }
+
+    .clouds-loop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 100%;
+        display: flex;
+        animation: clouds-move 60s linear infinite;
+        border-radius: 0;
+    }
+
+    .clouds-loop .cloud {
+        flex: 0 0 50%;
+        height: 100%;
+        background-image: var(--sky-url);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+    }
+
+    .donate-container {
+        position: absolute;
+        top: 3.5%;
+        right: 2.7%;
+        width: 56.25%;
+        height: 14.8%;
+        z-index: 20;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 0;
+        pointer-events: none;
+    }
+
+    .donate-badge {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+    }
+
+    .donate-link {
+        position: absolute;
+        top: 0;
+        right: 3.6%;
+        width: 40%;
+        height: 100%;
+        text-decoration: none;
+        color: transparent;
+        pointer-events: auto;
+        display: block;
+    }
+
+    .boys-illustrations {
+        /* overlay the illustrations directly on the sky area */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* keep illustrations sized with percentages so they remain in the
+           same stacking context as the sky (avoid transform which creates
+           a new stacking context and prevents mix-blend-mode from working) */
+        transform: none !important;
+        transform-origin: initial;
+        margin: 0;
+        z-index: 3; /* above sky (1) but below donate (20) */
+        overflow: hidden; /* ensure illustrations are clipped to the sky container */
+        pointer-events: none;
+        background: transparent;
+        display: block;
+        max-width: none;
+        isolation: auto; /* ensure blending happens with the sky backdrop */
+        /* blend the group with the sky so white canvas in JPEGs becomes transparent */
+        mix-blend-mode: multiply;
+    }
+
+    .boy-img {
+        position: absolute;
+        bottom: 0; /* anchor each boy to the bottom of the sky container */
+        object-fit: contain;
+        mix-blend-mode: multiply;
+        background: transparent;
+        display: block;
+        transform: none !important;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: transparent !important;
+    }
+
+    .boy3 {
+        top: auto;
+        bottom: 0; /* ensure exact bottom anchoring */
+        left: var(--boy3-left-mobile, 6%);
+        width: var(--boy3-width-mobile, 22%);
+        height: auto;
+        max-height: 100%;
+        z-index: 2;
+        object-position: var(--boy3-object-position-mobile, 50% 100%);
+        object-fit: contain;
+    }
+
+    .boy2 {
+        top: auto;
+        bottom: 0;
+        left: var(--boy2-left-mobile, 30%);
+        width: var(--boy2-width-mobile, 30%);
+        height: auto;
+        max-height: 100%;
+        z-index: 3;
+        object-position: var(--boy2-object-position-mobile, 50% 100%);
+        object-fit: contain;
+    }
+
+    .boy1 {
+        top: auto;
+        bottom: 0;
+        left: var(--boy1-left-mobile, 52%);
+        width: var(--boy1-width-mobile, 44%);
+        height: auto;
+        max-height: 100%;
+        z-index: 4;
+        object-position: var(--boy1-object-position-mobile, 55% 100%);
+        object-fit: contain;
+    }
+
+    .sad-text-badge-container {
+        /* place the sad-text badge at the bottom-right of the sky, raised
+           slightly above the boys so it doesn't overlap; images render
+           at 100% width of the container */
+        position: absolute;
+        bottom: 14px;
+        right: 12px;
+        width: 140px;
+        height: auto;
+        /* ensure badge renders above the illustrations */
+        z-index: 80;
+        margin: 0;
+        display: block;
+        pointer-events: none;
+        mix-blend-mode: normal;
+        isolation: isolate;
+    }
+
+    /* On mobile we hide the desktop stacked container and show the
+       dedicated mobile images so we can precisely control stacking */
+    .sad-text-badge-container { display: none; }
+
+    /* Mobile-specific two-image badge: stack them with a small horizontal
+       offset so they appear placed on top of each other as in the design */
+    .boysgetsadtoo {
+        display: block;
+        position: absolute;
+        bottom: 20px;
+        right: 16px;
+        width: 140px;
+        height: auto;
+        z-index: 85;
+        pointer-events: none;
+        object-fit: contain;
+        mix-blend-mode: normal;
+    }
+
+    .boysgetsadtoo-left {
+        /* the background / offset image sits slightly left */
+        right: 80px;
+        opacity: 1;
+    }
+
+    .boysgetsadtoo-right {
+        /* the foreground text image sits on top, a bit to the right */
+        right: 16px;
+        opacity: 1;
+    }
+
+    /* Mobile copyright: keep it tight under the sky */
+    .mobile-copyright {
+        font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: #551E08;
+        margin: 8px 20px 12px 20px;
+        padding: 0;
+    }
+
+    /* DEBUG: make the badge clearly visible on mobile while testing */
+    .sad-text-badge-container.debug-visible {
+        outline: 3px dashed rgba(255,0,0,0.9);
+        background: rgba(255,255,255,0.6);
+        z-index: 9999 !important;
+        pointer-events: auto;
+    }
+
+    .sad-badge-bg {
+        position: absolute;
+        top: 0;
+        left: -20;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: none !important;
+        display: block;
+        mix-blend-mode: normal;
+        filter: none;
+        opacity: 1;
+    }
+
+    .sad-badge-fg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: none !important;
+        display: block;
+        mix-blend-mode: normal;
+        filter: none;
+        opacity: 1;
+    }
+
+    /* ensure the sad badge does not inherit multiply blending */
+    .sad-text-badge-container,
+    .sad-text-badge-container img {
+        mix-blend-mode: normal !important;
+        background: transparent !important;
+    }
+
+    /* force the badge images to render at container size and be visible */
+    .sad-text-badge-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Position the boysgetsadtoo image where the three boys sit (mobile-only).
+       Defaults center the image at the bottom of the sky; tweak CSS variables
+       to fine-tune placement per device. */
+    .boysgetsadtoo,
+    img.boysgetsadtoo {
+        /* bottom-right of the sky, two images sit side-by-side */
+        position: absolute;
+        bottom: 8px; /* sit close to the bottom edge of the sky */
+        left: auto;
+        transform: none;
+        width: 140px;
+        height: auto;
+        object-fit: contain;
+        object-position: 100% 100%;
+        z-index: 90; /* above boys, below donate */
+        pointer-events: none;
+        display: block !important;
+        mix-blend-mode: normal !important;
+        background: transparent !important;
+        filter: none !important;
+    }
+
+    /* stack the two mobile badge images so the left image overlaps the right
+       and sits slightly higher to reveal the underlying design */
+    .boysgetsadtoo-left {
+        /* align horizontally with the right image and raise it a bit */
+       right: 12px;
+        top: 192px;
+        z-index: 90;
+    }
+
+    
+    .boysgetsadtoo-right {
+        /* keep the right image slightly lower so it sits underneath */
+        right: 14px;
+        bottom: 22px;
+        z-index: 90;
+    }
+
+    /* Mobile copyright placed in DOM so it is easier to find and style */
+    .mobile-copyright {
+        display: block;
+        margin: 12px 20px 12px 20px; /* reduce extra blank space below copyright */
         color: #551E08;
         font-family: 'DM Sans', 'Outfit', -apple-system, sans-serif;
         font-weight: 500;
