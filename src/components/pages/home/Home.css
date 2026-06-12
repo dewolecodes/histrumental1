@@ -351,7 +351,8 @@
 .boys-illustrations {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
+    left: auto;
     width: 880px;
     height: 832px;
 }
@@ -362,17 +363,17 @@
 
 .boys-illustrations {
     --boy1-top: -60px;
-    --boy1-left: 505px;
-    --boy1-width: 644px;
+    --boy1-left: 240px;
+    --boy1-width: 650px;
     --boy1-height: 892px;
 
     --boy2-top: 239px;
-    --boy2-left: 270px;
-    --boy2-width: 428px;
+    --boy2-left: -50px;
+    --boy2-width: 500px;
     --boy2-height: 593px;
 
     --boy3-top: 452px;
-    --boy3-left: 102px;
+    --boy3-left: -230px;
     --boy3-width: 274px;
     --boy3-height: 380px;
 }
@@ -768,7 +769,7 @@
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
     .sky-bg-container {
         overflow: hidden;
     }
