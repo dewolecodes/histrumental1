@@ -47,7 +47,6 @@ export default function Home() {
                 transform: `scale(${scale})`,
                 width: scale !== 1 ? `calc(100vw / ${scale})` : '100%'
             }}>
-                {/* Left Column (Content) */}
                 <div className="left-column">
                     <header className="header-left">
                         <a href="/" className="logo-link">
@@ -94,7 +93,6 @@ export default function Home() {
                     </footer>
                 </div>
 
-                {/* Right Column (Visuals) */}
                 <div className="right-column">
                     <div className="sky-bg-container">
                         <div
@@ -106,10 +104,7 @@ export default function Home() {
                             <div className="cloud"></div>
                         </div>
 
-                        {/* Place illustrations and badge inside the sky container so they
-                           are positioned relative to the sky's bottom on mobile */}
                         <div className="boys-illustrations">
-                            {/* boy3 is in the back, boy1 is in the front */}
                             <img src="/images/boy3.jpg" className="boy-img boy3" alt="Young boy illustration" />
                             <img src="/images/boy2.jpg" className="boy-img boy2" alt="Boy illustration" />
                             <img src="/images/boy1.jpg" className="boy-img boy1" alt="Older boy illustration" />
@@ -119,18 +114,22 @@ export default function Home() {
                             <img src="/icons/boysgetsadtoo2.png" className="sad-badge-bg" alt="Boys Get Sad Too outline shadow" />
                             <img src="/icons/boysgetsadtoo.png" className="sad-badge-fg" alt="Boys Get Sad Too text" />
                         </div>
-                        {/* desktop badge above; also include two dedicated mobile images that will
-                            be positioned by CSS so they reliably appear on small screens side-by-side */}
                         <img src="/icons/boysgetsadtoo2.png" className="boysgetsadtoo boysgetsadtoo-left" alt="Boys Get Sad Too mobile bg" />
                         <img src="/icons/boysgetsadtoo.png" className="boysgetsadtoo boysgetsadtoo-right" alt="Boys Get Sad Too mobile fg" />
                     </div>
 
-                    {/* mobile-only copyright placed after the sky so it always appears below the image */}
                     <div className="mobile-copyright">©2026 Histrumental.org. All Rights Reserved</div>
 
-                    <div className="donate-container">
+                    <div className="donate-container mobile-only-donate">
                         <img src="/icons/todonate.png" className="donate-badge" alt="To donate today, send us a message" />
                         <a href="mailto:support@histrumental.org" className="donate-link" aria-label="Email support">support@histrumental.org</a>
+                    </div>
+                </div>
+
+                <div className="donate-container desktop-tablet-donate">
+                    <div className="donate-html-badge">
+                        <span className="donate-text">donate today, send us a message:</span>
+                        <a href="mailto:support@histrumental.org" className="donate-pill" aria-label="Email support">support@histrumental.org</a>
                     </div>
                 </div>
             </div>
